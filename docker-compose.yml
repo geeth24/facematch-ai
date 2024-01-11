@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    volumes:
+      - ./python-app:/app
+    ports:
+      - "4000:4000"
+    command: uvicorn main:app --host 0.0.0.0 --reload --port 4000  # or any other command to start your FastAPI backend
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    volumes:
+      - ./nextjs-app:/app/nextjs-app
+      - /app/nextjs-app/node_modules
+    ports:
+      - "3000:3000"
+    command: pnpm run dev  # or any other command to start your Next.js frontend
