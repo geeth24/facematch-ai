@@ -33,7 +33,7 @@ export default function Home() {
     formData.append('file2', file2);
 
     try {
-      const response = await fetch('https://api.facematch.reactiveshots.com/compare-faces/', {
+      const response = await fetch('https://facematch-api.reactiveshots.com/compare-faces/', {
         method: 'POST',
         body: formData,
       });
